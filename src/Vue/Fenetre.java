@@ -38,6 +38,8 @@ public class Fenetre extends javax.swing.JFrame
     private static List<EquipeRamasseur> listeEquipeRamasseur;
     private static List<Joueur> listeJoueurDispo;
     private static List<Joueur> listeJoueurPlace;
+    private List<Arbitre> listeArbitreDispo;
+    private List<Arbitre> listeArbitrePlace;
     private static List<Match> listeMatchDispo;
     private static List<Match> listeMatchPlace;
     private static List<Ramasseur> listeRamasseur;
@@ -60,6 +62,8 @@ public class Fenetre extends javax.swing.JFrame
         listeEquipeRamasseur = new ArrayList<>();
         listeJoueurDispo = new ArrayList<>();
         listeJoueurPlace = new ArrayList<>();
+        listeArbitreDispo = new ArrayList<>();
+        listeArbitrePlace = new ArrayList<>();
         listeMatchDispo = new ArrayList<>();
         listeMatchPlace = new ArrayList<>();
         listeRamasseur = new ArrayList<>();
@@ -87,7 +91,7 @@ public class Fenetre extends javax.swing.JFrame
         {
             System.out.println("Erreur !! " + e);
         }
-        listeArbitre = arbitre.getLesArbitres();
+        
         listeArbitreChaise = arbitre.getLesArbitresChaise();
         listeArbitreLigne = arbitre.getLesArbitresLigne();
         listeCourt = court.getLesCours();
@@ -106,21 +110,38 @@ public class Fenetre extends javax.swing.JFrame
         }
         comboMinute.setEnabled(false);
         actualiseListeJoueur();
+        actualiseListeArbitre();
     }
     
     private void actualiseListeJoueur()
     {
         recupListeJoueur();
-        jComboBox7.removeAllItems();
+        comboJ1.removeAllItems();
         for(Joueur j:listeJoueurDispo)
         {         
-            jComboBox7.addItem(j.toString());
+            comboJ1.addItem(j.toString());
         }
-        jComboBox8.removeAllItems();
+        comboJ2.removeAllItems();
         for(Joueur j:listeJoueurDispo)
         {
-            if(!j.toString().equals(jComboBox7.getSelectedItem().toString()))
-                jComboBox8.addItem(j.toString());
+            if(!j.toString().equals(comboJ1.getSelectedItem().toString()))
+                comboJ2.addItem(j.toString());
+        }
+    }
+    
+    private void actualiseListeArbitre()
+    {
+        recupListeArbitre();
+        comboArbitre1.removeAllItems();
+        for(Arbitre a : listeArbitreDispo)
+        {         
+            comboArbitre1.addItem(a.toString());
+        }
+        comboArbitre2.removeAllItems();
+        for(Arbitre j:listeArbitreDispo)
+        {
+            if(!j.toString().equals(comboArbitre1.getSelectedItem().toString()))
+                comboArbitre2.addItem(j.toString());
         }
     }
     
@@ -133,7 +154,9 @@ public class Fenetre extends javax.swing.JFrame
     
     private void recupListeArbitre()
     {
-        
+        arbitre.getLesArbitres(comboJour.getSelectedItem().toString(), comboMois.getSelectedItem().toString(), comboAnnee.getSelectedItem().toString(), comboHeure.getSelectedItem().toString(), comboMinute.getSelectedItem().toString());
+        listeArbitrePlace = arbitre.getListeArbitrePlace();
+        listeArbitreDispo = arbitre.getListeArbitreDispo();
     }
 
     /**
@@ -160,8 +183,8 @@ public class Fenetre extends javax.swing.JFrame
         comboMinute = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jComboBox8 = new javax.swing.JComboBox<>();
+        comboJ1 = new javax.swing.JComboBox<>();
+        comboJ2 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         comboCourt = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
@@ -283,9 +306,9 @@ public class Fenetre extends javax.swing.JFrame
 
         jLabel2.setText("Joueur 2 :");
 
-        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+        comboJ1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox7ActionPerformed(evt);
+                comboJ1ActionPerformed(evt);
             }
         });
 
@@ -305,6 +328,12 @@ public class Fenetre extends javax.swing.JFrame
         jLabel4.setText("Affecter des joueurs et arbitres à un match");
 
         jLabel9.setText("Arbitre 1 : ");
+
+        comboArbitre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboArbitre1ActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Arbitre 3 :");
 
@@ -377,11 +406,11 @@ public class Fenetre extends javax.swing.JFrame
                                     .addGroup(panResponsableLayout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(comboJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(comboJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(panMatchDouble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panResponsableLayout.createSequentialGroup()
                                         .addComponent(jLabel8)
@@ -455,10 +484,10 @@ public class Fenetre extends javax.swing.JFrame
                         .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
-                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel1)
-                                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(5, 5, 5)
                         .addComponent(panMatchDouble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -606,6 +635,7 @@ public class Fenetre extends javax.swing.JFrame
             }
         }
         actualiseListeJoueur();
+        actualiseListeArbitre();
     }//GEN-LAST:event_butValiderActionPerformed
 
     private void butValider1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butValider1ActionPerformed
@@ -620,10 +650,12 @@ public class Fenetre extends javax.swing.JFrame
 
     private void comboAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnneeActionPerformed
         actualiseListeJoueur();
+        actualiseListeArbitre();
     }//GEN-LAST:event_comboAnneeActionPerformed
 
     private void comboMinuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMinuteActionPerformed
         actualiseListeJoueur();
+        actualiseListeArbitre();
     }//GEN-LAST:event_comboMinuteActionPerformed
 
     private void comboHeureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboHeureActionPerformed
@@ -647,17 +679,19 @@ public class Fenetre extends javax.swing.JFrame
         actualiseListeJoueur();
     }//GEN-LAST:event_comboMoisActionPerformed
 
-    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
-        jComboBox8.removeAllItems();
+    private void comboJ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboJ1ActionPerformed
+        comboJ2.removeAllItems();
         for(Joueur j:listeJoueurDispo)
         {
-            if(jComboBox7.getSelectedItem() == null)
+            if(comboJ1.getSelectedItem() == null)
                 return;
-            else if(!j.toString().equals(jComboBox7.getSelectedItem().toString()))
-                jComboBox8.addItem(j.toString());
+            else if(!j.toString().equals(comboJ1.getSelectedItem().toString()))
+                comboJ2.addItem(j.toString());
         }
-    }//GEN-LAST:event_jComboBox7ActionPerformed
+    }//GEN-LAST:event_comboJ1ActionPerformed
 
+    
+    
     private void comboCourtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCourtActionPerformed
 
     }//GEN-LAST:event_comboCourtActionPerformed
@@ -681,6 +715,17 @@ public class Fenetre extends javax.swing.JFrame
             panMatchDouble.setVisible(false);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void comboArbitre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboArbitre1ActionPerformed
+    comboArbitre2.removeAllItems();
+            for(Arbitre a:listeArbitreDispo)
+            {
+                if(comboArbitre2.getSelectedItem() == null)
+                    return;
+                else if(!a.toString().equals(comboArbitre1.getSelectedItem().toString()))
+                    comboArbitre2.addItem(a.toString());
+            }        // TODO add your handling code here:
+    }//GEN-LAST:event_comboArbitre1ActionPerformed
 
     
     /**
@@ -734,6 +779,8 @@ public class Fenetre extends javax.swing.JFrame
     private javax.swing.JComboBox<String> comboArbitre7;
     private javax.swing.JComboBox comboCourt;
     private javax.swing.JComboBox<String> comboHeure;
+    private javax.swing.JComboBox<String> comboJ1;
+    private javax.swing.JComboBox<String> comboJ2;
     private javax.swing.JComboBox<String> comboJour;
     private javax.swing.JComboBox<String> comboMinute;
     private javax.swing.JComboBox<String> comboMois;
@@ -741,8 +788,6 @@ public class Fenetre extends javax.swing.JFrame
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
