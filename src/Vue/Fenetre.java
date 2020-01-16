@@ -104,13 +104,14 @@ public class Fenetre extends javax.swing.JFrame
         panResponsable.setVisible(false);
         panLancement.setVisible(true);
         panMatchDouble.setVisible(false);
+        comboMinute.setEnabled(false);
         for(Match m:listeMatchDispo)
         {
             comboNumMatch.addItem(m.toString());
         }
-        comboMinute.setEnabled(false);
+        
         actualiseListeJoueur();
-        actualiseListeArbitre();
+       // actualiseListeArbitre();
     }
     
     private void actualiseListeJoueur()
@@ -154,7 +155,7 @@ public class Fenetre extends javax.swing.JFrame
     
     private void recupListeArbitre()
     {
-        arbitre.getLesArbitres(comboJour.getSelectedItem().toString(), comboMois.getSelectedItem().toString(), comboAnnee.getSelectedItem().toString(), comboHeure.getSelectedItem().toString(), comboMinute.getSelectedItem().toString());
+        arbitre.getArbitresLigne(comboJour.getSelectedItem().toString(), comboMois.getSelectedItem().toString(), comboAnnee.getSelectedItem().toString(), comboHeure.getSelectedItem().toString(), comboMinute.getSelectedItem().toString());
         listeArbitrePlace = arbitre.getListeArbitrePlace();
         listeArbitreDispo = arbitre.getListeArbitreDispo();
     }
@@ -635,7 +636,7 @@ public class Fenetre extends javax.swing.JFrame
             }
         }
         actualiseListeJoueur();
-        actualiseListeArbitre();
+        //actualiseListeArbitre();
     }//GEN-LAST:event_butValiderActionPerformed
 
     private void butValider1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butValider1ActionPerformed
@@ -650,12 +651,12 @@ public class Fenetre extends javax.swing.JFrame
 
     private void comboAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnneeActionPerformed
         actualiseListeJoueur();
-        actualiseListeArbitre();
+       // actualiseListeArbitre();
     }//GEN-LAST:event_comboAnneeActionPerformed
 
     private void comboMinuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMinuteActionPerformed
         actualiseListeJoueur();
-        actualiseListeArbitre();
+      //  actualiseListeArbitre();
     }//GEN-LAST:event_comboMinuteActionPerformed
 
     private void comboHeureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboHeureActionPerformed
