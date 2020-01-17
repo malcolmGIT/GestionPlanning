@@ -19,6 +19,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Fenetre extends javax.swing.JFrame
 {
@@ -104,6 +106,7 @@ public class Fenetre extends javax.swing.JFrame
         panResponsable.setVisible(false);
         panLancement.setVisible(true);
         panMatchDouble.setVisible(false);
+        panJoueur.setVisible(false);
         comboMinute.setEnabled(false);
         for(Match m:listeMatchDispo)
         {
@@ -215,6 +218,19 @@ public class Fenetre extends javax.swing.JFrame
         jLabel5 = new javax.swing.JLabel();
         butJoueur = new javax.swing.JButton();
         butResponsable = new javax.swing.JButton();
+        panJoueur = new javax.swing.JPanel();
+        TFnom = new javax.swing.JTextField();
+        CBHeureDébutReservation = new javax.swing.JComboBox<>();
+        CBJourReservation = new javax.swing.JComboBox<>();
+        SNombrePersonnesReservation = new javax.swing.JSpinner();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        BValider = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,7 +255,7 @@ public class Fenetre extends javax.swing.JFrame
                     .addGroup(panConfirmationJoueurLayout.createSequentialGroup()
                         .addGap(237, 237, 237)
                         .addComponent(butValider1)))
-                .addContainerGap(742, Short.MAX_VALUE))
+                .addContainerGap(740, Short.MAX_VALUE))
         );
         panConfirmationJoueurLayout.setVerticalGroup(
             panConfirmationJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +392,7 @@ public class Fenetre extends javax.swing.JFrame
         panMatchDoubleLayout.setVerticalGroup(
             panMatchDoubleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panMatchDoubleLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panMatchDoubleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19)
@@ -573,7 +589,7 @@ public class Fenetre extends javax.swing.JFrame
                     .addGroup(panLancementLayout.createSequentialGroup()
                         .addGap(185, 185, 185)
                         .addGroup(panLancementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(butResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                            .addComponent(butResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 148, Short.MAX_VALUE)
                             .addComponent(butJoueur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(216, Short.MAX_VALUE))
         );
@@ -589,6 +605,107 @@ public class Fenetre extends javax.swing.JFrame
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
+        TFnom.setText("Entrez votre nom");
+        TFnom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFnomActionPerformed(evt);
+            }
+        });
+
+        CBHeureDébutReservation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBHeureDébutReservation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBHeureDébutReservationActionPerformed(evt);
+            }
+        });
+
+        CBJourReservation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel20.setText("Votre nom");
+
+        jLabel21.setText("Heure de début");
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel22.setText("Jour");
+
+        jLabel23.setText("Court");
+
+        jLabel24.setText("Nombre de personnes");
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel25.setText("Réserver un créneau d'entraînement");
+
+        BValider.setText("Réserver avec ces informations");
+        BValider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BValiderActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panJoueurLayout = new javax.swing.GroupLayout(panJoueur);
+        panJoueur.setLayout(panJoueurLayout);
+        panJoueurLayout.setHorizontalGroup(
+            panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panJoueurLayout.createSequentialGroup()
+                .addGroup(panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panJoueurLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel20)
+                            .addComponent(SNombrePersonnesReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panJoueurLayout.createSequentialGroup()
+                                .addGroup(panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(TFnom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                        .addComponent(CBHeureDébutReservation, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel21))
+                                .addGap(18, 18, 18)
+                                .addGroup(panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22)
+                                    .addComponent(CBJourReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(panJoueurLayout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(jLabel25)))
+                .addContainerGap(174, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panJoueurLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(BValider)
+                .addGap(247, 247, 247))
+        );
+        panJoueurLayout.setVerticalGroup(
+            panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panJoueurLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel25)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TFnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel22))
+                .addGap(2, 2, 2)
+                .addGroup(panJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CBHeureDébutReservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CBJourReservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel24)
+                .addGap(5, 5, 5)
+                .addComponent(SNombrePersonnesReservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BValider)
+                .addContainerGap(94, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -601,17 +718,27 @@ public class Fenetre extends javax.swing.JFrame
                     .addGap(238, 238, 238)
                     .addComponent(panLancement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(239, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panResponsable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panConfirmationJoueur, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
+                .addComponent(panConfirmationJoueur, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(129, 129, 129)
                     .addComponent(panLancement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(130, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -621,7 +748,8 @@ public class Fenetre extends javax.swing.JFrame
     private void butValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butValiderActionPerformed
         
         panResponsable.setVisible(false);
-        panConfirmationJoueur.setVisible(true);       
+        panConfirmationJoueur.setVisible(true);  
+        panMatchDouble.setVisible(false);
         if(match.placerUnMatch(listeMatchDispo, listeMatchPlace, match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchDispo), comboJour.getSelectedItem().toString(), comboMois.getSelectedItem().toString(), comboAnnee.getSelectedItem().toString(), comboHeure.getSelectedItem().toString(), comboMinute.getSelectedItem().toString()))
         {    
             if(match.estBienPlace(match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchPlace), listeMatchPlace, comboCourt.getSelectedItem().toString()))
@@ -698,7 +826,8 @@ public class Fenetre extends javax.swing.JFrame
     }//GEN-LAST:event_comboCourtActionPerformed
 
     private void butJoueurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butJoueurActionPerformed
-        // TODO add your handling code here:
+        panLancement.setVisible(false);
+        panJoueur.setVisible(true);
     }//GEN-LAST:event_butJoueurActionPerformed
 
     private void butResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butResponsableActionPerformed
@@ -727,6 +856,23 @@ public class Fenetre extends javax.swing.JFrame
                     comboArbitre2.addItem(a.toString());
             }        // TODO add your handling code here:
     }//GEN-LAST:event_comboArbitre1ActionPerformed
+
+    private void CBHeureDébutReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBHeureDébutReservationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBHeureDébutReservationActionPerformed
+
+    private void TFnomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFnomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFnomActionPerformed
+
+    private void BValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BValiderActionPerformed
+        try {
+            // TODO add your handling code here:
+            reservation.ajouterReservation("10h", "15h", "2020-05-15", "central");
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BValiderActionPerformed
 
     
     /**
@@ -766,6 +912,11 @@ public class Fenetre extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BValider;
+    private javax.swing.JComboBox<String> CBHeureDébutReservation;
+    private javax.swing.JComboBox<String> CBJourReservation;
+    private javax.swing.JSpinner SNombrePersonnesReservation;
+    private javax.swing.JTextField TFnom;
     private javax.swing.JButton butJoueur;
     private javax.swing.JButton butResponsable;
     private javax.swing.JButton butValider;
@@ -789,6 +940,7 @@ public class Fenetre extends javax.swing.JFrame
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -801,6 +953,12 @@ public class Fenetre extends javax.swing.JFrame
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -809,6 +967,7 @@ public class Fenetre extends javax.swing.JFrame
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel panConfirmationJoueur;
+    private javax.swing.JPanel panJoueur;
     private javax.swing.JPanel panLancement;
     private javax.swing.JPanel panMatchDouble;
     private javax.swing.JPanel panResponsable;
