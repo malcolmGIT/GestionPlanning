@@ -95,7 +95,7 @@ public class MatchDAO
         }
         catch(SQLException e)
         {
-            System.out.println("Erreur ! : " + e);
+            System.out.println("Erreur placer match ! : " + e);
             return false;
         }
         
@@ -135,7 +135,7 @@ public class MatchDAO
         }
         catch(SQLException e)
         {
-            System.out.println("Erreur ! : " + e);
+            System.out.println("Erreur get les matchs place! : " + e);
         }
         return listeMatch;
     }

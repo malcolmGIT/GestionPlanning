@@ -31,4 +31,12 @@ public class Arbitre
     public int getNumArbitre(){
         return numArbitre;
     }
+
+    @Override
+    public String toString()
+    {
+        return "arbitre n°" + numArbitre;
+    }
+    
+    
 }

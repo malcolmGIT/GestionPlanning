@@ -94,13 +94,13 @@ public class Fenetre extends javax.swing.JFrame
         
         listeArbitreChaise = arbitre.getLesArbitresChaise();
         listeArbitreLigne = arbitre.getLesArbitresLigne();
-        listeCourt = court.getLesCours();
+        listeCourt = court.getLesCours();//
         listeEquipeRamasseur = equipe.getLesEquipes();
         listeMatchDispo = match.getMatchsDispos();
         listeMatchPlace = match.getLesMatchsPlace();
-        listeRamasseur = ramasseur.getLesRamasseurs();
-        listeReservation = reservation.getLesReservations();
-        panConfirmationJoueur.setVisible(false);
+        listeRamasseur = ramasseur.getLesRamasseurs();//
+        listeReservation = reservation.getLesReservations();//
+        panConfirmationResponsable.setVisible(false);
         panResponsable.setVisible(false);
         panLancement.setVisible(true);
         panMatchDouble.setVisible(false);
@@ -111,7 +111,7 @@ public class Fenetre extends javax.swing.JFrame
         }
         
         actualiseListeJoueur();
-       // actualiseListeArbitre();
+       actualiseListeArbitre();
     }
     
     private void actualiseListeJoueur()
@@ -128,6 +128,23 @@ public class Fenetre extends javax.swing.JFrame
             if(!j.toString().equals(comboJ1.getSelectedItem().toString()))
                 comboJ2.addItem(j.toString());
         }
+        comboJ3.removeAllItems();
+        for(Joueur j:listeJoueurDispo)
+        {
+            if(!j.toString().equals(comboJ1.getSelectedItem().toString()))
+                if(!j.toString().equals(comboJ2.getSelectedItem().toString()))
+                    comboJ3.addItem(j.toString());
+                
+            }
+        comboJ4.removeAllItems();
+        for(Joueur j:listeJoueurDispo)
+        {
+            if(!j.toString().equals(comboJ1.getSelectedItem().toString()))
+                if(!j.toString().equals(comboJ2.getSelectedItem().toString()))
+                    if(!j.toString().equals(comboJ3.getSelectedItem().toString()))
+                        comboJ4.addItem(j.toString());
+                
+            }
     }
     
     private void actualiseListeArbitre()
@@ -143,6 +160,51 @@ public class Fenetre extends javax.swing.JFrame
         {
             if(!j.toString().equals(comboArbitre1.getSelectedItem().toString()))
                 comboArbitre2.addItem(j.toString());
+        }
+        comboArbitre3.removeAllItems();
+        for(Arbitre j:listeArbitreDispo)
+        {
+            if(!j.toString().equals(comboArbitre1.getSelectedItem().toString()))
+                if(!j.toString().equals(comboArbitre2.getSelectedItem().toString()))
+                    comboArbitre3.addItem(j.toString());
+        }
+        comboArbitre4.removeAllItems();
+        for(Arbitre j:listeArbitreDispo)
+        {
+            if(!j.toString().equals(comboArbitre1.getSelectedItem().toString()))
+                if(!j.toString().equals(comboArbitre2.getSelectedItem().toString()))
+                    if(!j.toString().equals(comboArbitre3.getSelectedItem().toString()))
+                        comboArbitre4.addItem(j.toString());
+        }
+        comboArbitre5.removeAllItems();
+        for(Arbitre j:listeArbitreDispo)
+        {
+            if(!j.toString().equals(comboArbitre1.getSelectedItem().toString()))
+                if(!j.toString().equals(comboArbitre2.getSelectedItem().toString()))
+                    if(!j.toString().equals(comboArbitre3.getSelectedItem().toString()))
+                        if(!j.toString().equals(comboArbitre4.getSelectedItem().toString()))
+                            comboArbitre5.addItem(j.toString());
+        }
+        comboArbitre6.removeAllItems();
+        for(Arbitre j:listeArbitreDispo)
+        {
+            if(!j.toString().equals(comboArbitre1.getSelectedItem().toString()))
+                if(!j.toString().equals(comboArbitre2.getSelectedItem().toString()))
+                    if(!j.toString().equals(comboArbitre3.getSelectedItem().toString()))
+                        if(!j.toString().equals(comboArbitre4.getSelectedItem().toString()))
+                            if(!j.toString().equals(comboArbitre5.getSelectedItem().toString()))
+                                comboArbitre6.addItem(j.toString());
+        }
+        comboArbitre7.removeAllItems();
+        for(Arbitre j:listeArbitreDispo)
+        {
+            if(!j.toString().equals(comboArbitre1.getSelectedItem().toString()))
+                if(!j.toString().equals(comboArbitre2.getSelectedItem().toString()))
+                    if(!j.toString().equals(comboArbitre3.getSelectedItem().toString()))
+                        if(!j.toString().equals(comboArbitre4.getSelectedItem().toString()))
+                            if(!j.toString().equals(comboArbitre5.getSelectedItem().toString()))
+                                if(!j.toString().equals(comboArbitre6.getSelectedItem().toString()))
+                                    comboArbitre7.addItem(j.toString());
         }
     }
     
@@ -169,7 +231,7 @@ public class Fenetre extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panConfirmationJoueur = new javax.swing.JPanel();
+        panConfirmationResponsable = new javax.swing.JPanel();
         butValider1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         panResponsable = new javax.swing.JPanel();
@@ -209,8 +271,14 @@ public class Fenetre extends javax.swing.JFrame
         panMatchDouble = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        comboJ4 = new javax.swing.JComboBox<>();
+        comboJ3 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
         panLancement = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         butJoueur = new javax.swing.JButton();
@@ -218,7 +286,7 @@ public class Fenetre extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panConfirmationJoueur.setPreferredSize(new java.awt.Dimension(400, 300));
+        panConfirmationResponsable.setPreferredSize(new java.awt.Dimension(400, 300));
 
         butValider1.setText("OK");
         butValider1.addActionListener(new java.awt.event.ActionListener() {
@@ -227,23 +295,23 @@ public class Fenetre extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout panConfirmationJoueurLayout = new javax.swing.GroupLayout(panConfirmationJoueur);
-        panConfirmationJoueur.setLayout(panConfirmationJoueurLayout);
-        panConfirmationJoueurLayout.setHorizontalGroup(
-            panConfirmationJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panConfirmationJoueurLayout.createSequentialGroup()
-                .addGroup(panConfirmationJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panConfirmationJoueurLayout.createSequentialGroup()
+        javax.swing.GroupLayout panConfirmationResponsableLayout = new javax.swing.GroupLayout(panConfirmationResponsable);
+        panConfirmationResponsable.setLayout(panConfirmationResponsableLayout);
+        panConfirmationResponsableLayout.setHorizontalGroup(
+            panConfirmationResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panConfirmationResponsableLayout.createSequentialGroup()
+                .addGroup(panConfirmationResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panConfirmationResponsableLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(jLabel7))
-                    .addGroup(panConfirmationJoueurLayout.createSequentialGroup()
+                    .addGroup(panConfirmationResponsableLayout.createSequentialGroup()
                         .addGap(237, 237, 237)
                         .addComponent(butValider1)))
                 .addContainerGap(742, Short.MAX_VALUE))
         );
-        panConfirmationJoueurLayout.setVerticalGroup(
-            panConfirmationJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panConfirmationJoueurLayout.createSequentialGroup()
+        panConfirmationResponsableLayout.setVerticalGroup(
+            panConfirmationResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panConfirmationResponsableLayout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
@@ -366,12 +434,12 @@ public class Fenetre extends javax.swing.JFrame
             .addGroup(panMatchDoubleLayout.createSequentialGroup()
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addComponent(comboJ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addComponent(comboJ4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 50, Short.MAX_VALUE))
         );
         panMatchDoubleLayout.setVerticalGroup(
             panMatchDoubleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,27 +448,39 @@ public class Fenetre extends javax.swing.JFrame
                 .addGroup(panMatchDoubleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboJ4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboJ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jButton1.setText("< Retour");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setText("Equipe de ramasseur :");
+
+        jLabel21.setText("Arbitres de ligne :");
+
+        jLabel22.setText("Arbitre de chaise :");
 
         javax.swing.GroupLayout panResponsableLayout = new javax.swing.GroupLayout(panResponsable);
         panResponsable.setLayout(panResponsableLayout);
         panResponsableLayout.setHorizontalGroup(
             panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panResponsableLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(113, 113, 113)
+                .addComponent(butValider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panResponsableLayout.createSequentialGroup()
                 .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panResponsableLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(butValider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panResponsableLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
                         .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1)
                             .addGroup(panResponsableLayout.createSequentialGroup()
-                                .addGap(113, 113, 113)
+                                .addGap(177, 177, 177)
                                 .addComponent(jLabel4))
                             .addGroup(panResponsableLayout.createSequentialGroup()
                                 .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -438,58 +518,82 @@ public class Fenetre extends javax.swing.JFrame
                                                     .addGroup(panResponsableLayout.createSequentialGroup()
                                                         .addGap(13, 13, 13)
                                                         .addComponent(comboMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addComponent(comboNumMatch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(comboNumMatch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jCheckBox1))
                                 .addGap(92, 92, 92)
+                                .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panResponsableLayout.createSequentialGroup()
+                                            .addComponent(jLabel12)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(comboArbitre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panResponsableLayout.createSequentialGroup()
+                                            .addComponent(jLabel14)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(comboArbitre4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panResponsableLayout.createSequentialGroup()
+                                            .addComponent(jLabel15)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(comboArbitre5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panResponsableLayout.createSequentialGroup()
+                                                .addComponent(jLabel17)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(comboArbitre7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panResponsableLayout.createSequentialGroup()
+                                                .addComponent(jLabel16)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(comboArbitre6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(panResponsableLayout.createSequentialGroup()
+                                            .addComponent(jLabel13)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(comboArbitre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panResponsableLayout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(comboArbitre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel21))
+                                    .addComponent(jLabel20))
                                 .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panResponsableLayout.createSequentialGroup()
-                                        .addComponent(jLabel12)
                                         .addGap(18, 18, 18)
-                                        .addComponent(comboArbitre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panResponsableLayout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(comboArbitre4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panResponsableLayout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(comboArbitre5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panResponsableLayout.createSequentialGroup()
-                                            .addComponent(jLabel17)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(comboArbitre7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panResponsableLayout.createSequentialGroup()
-                                            .addComponent(jLabel16)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(comboArbitre6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(panResponsableLayout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(comboArbitre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panResponsableLayout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(comboArbitre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(443, Short.MAX_VALUE))))
+                                        .addGap(54, 54, 54)
+                                        .addComponent(jLabel22)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(panResponsableLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addGap(202, 359, Short.MAX_VALUE))
         );
         panResponsableLayout.setVerticalGroup(
             panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panResponsableLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel4)
                 .addGap(25, 25, 25)
-                .addComponent(jCheckBox1)
+                .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jLabel20)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(comboJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel21)
+                        .addComponent(jLabel22)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(comboJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(5, 5, 5)
+                .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panResponsableLayout.createSequentialGroup()
-                        .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(comboJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(comboJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(5, 5, 5)
                         .addComponent(panMatchDouble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -511,7 +615,7 @@ public class Fenetre extends javax.swing.JFrame
                         .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(comboCourt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                         .addComponent(butValider, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panResponsableLayout.createSequentialGroup()
                         .addGroup(panResponsableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -595,7 +699,7 @@ public class Fenetre extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panConfirmationJoueur, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE))
+                .addComponent(panConfirmationResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(238, 238, 238)
@@ -606,7 +710,7 @@ public class Fenetre extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panResponsable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panConfirmationJoueur, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
+                .addComponent(panConfirmationResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(129, 129, 129)
@@ -621,7 +725,8 @@ public class Fenetre extends javax.swing.JFrame
     private void butValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butValiderActionPerformed
         
         panResponsable.setVisible(false);
-        panConfirmationJoueur.setVisible(true);       
+        panConfirmationResponsable.setVisible(true); 
+        panMatchDouble.setVisible(false);
         if(match.placerUnMatch(listeMatchDispo, listeMatchPlace, match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchDispo), comboJour.getSelectedItem().toString(), comboMois.getSelectedItem().toString(), comboAnnee.getSelectedItem().toString(), comboHeure.getSelectedItem().toString(), comboMinute.getSelectedItem().toString()))
         {    
             if(match.estBienPlace(match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchPlace), listeMatchPlace, comboCourt.getSelectedItem().toString()))
@@ -636,11 +741,11 @@ public class Fenetre extends javax.swing.JFrame
             }
         }
         actualiseListeJoueur();
-        //actualiseListeArbitre();
+        actualiseListeArbitre();
     }//GEN-LAST:event_butValiderActionPerformed
 
     private void butValider1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butValider1ActionPerformed
-        panConfirmationJoueur.setVisible(false);
+        panConfirmationResponsable.setVisible(false);
         panResponsable.setVisible(true);
         
     }//GEN-LAST:event_butValider1ActionPerformed
@@ -651,12 +756,12 @@ public class Fenetre extends javax.swing.JFrame
 
     private void comboAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAnneeActionPerformed
         actualiseListeJoueur();
-       // actualiseListeArbitre();
+       actualiseListeArbitre();
     }//GEN-LAST:event_comboAnneeActionPerformed
 
     private void comboMinuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMinuteActionPerformed
         actualiseListeJoueur();
-      //  actualiseListeArbitre();
+      actualiseListeArbitre();
     }//GEN-LAST:event_comboMinuteActionPerformed
 
     private void comboHeureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboHeureActionPerformed
@@ -703,7 +808,7 @@ public class Fenetre extends javax.swing.JFrame
 
     private void butResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butResponsableActionPerformed
         // TODO add your handling code here:
-        panConfirmationJoueur.setVisible(false);
+        panConfirmationResponsable.setVisible(false);
         panResponsable.setVisible(true);
         panLancement.setVisible(false);
     }//GEN-LAST:event_butResponsableActionPerformed
@@ -727,6 +832,13 @@ public class Fenetre extends javax.swing.JFrame
                     comboArbitre2.addItem(a.toString());
             }        // TODO add your handling code here:
     }//GEN-LAST:event_comboArbitre1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        panResponsable.setVisible(false);
+        panConfirmationResponsable.setVisible(false); 
+        panMatchDouble.setVisible(false);
+        panLancement.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**
@@ -782,13 +894,16 @@ public class Fenetre extends javax.swing.JFrame
     private javax.swing.JComboBox<String> comboHeure;
     private javax.swing.JComboBox<String> comboJ1;
     private javax.swing.JComboBox<String> comboJ2;
+    private javax.swing.JComboBox<String> comboJ3;
+    private javax.swing.JComboBox<String> comboJ4;
     private javax.swing.JComboBox<String> comboJour;
     private javax.swing.JComboBox<String> comboMinute;
     private javax.swing.JComboBox<String> comboMois;
     private javax.swing.JComboBox<String> comboNumMatch;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -801,6 +916,9 @@ public class Fenetre extends javax.swing.JFrame
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -808,7 +926,7 @@ public class Fenetre extends javax.swing.JFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel panConfirmationJoueur;
+    private javax.swing.JPanel panConfirmationResponsable;
     private javax.swing.JPanel panLancement;
     private javax.swing.JPanel panMatchDouble;
     private javax.swing.JPanel panResponsable;

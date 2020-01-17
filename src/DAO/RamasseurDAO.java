@@ -23,7 +23,7 @@ public class RamasseurDAO
         try
         {
             stmt = connexionBD.createStatement();
-            resultat = stmt.executeQuery("select numramasseur,nom from ramasseur");
+            resultat = stmt.executeQuery("select numramasseur,nomramasseur from ramasseurballe");
             listeRamasseur = new ArrayList<>();
             
             while(resultat.next())

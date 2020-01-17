@@ -24,12 +24,12 @@ public class ReservationDAO
         try
         {
             stmt = connexionBD.createStatement();
-            resultat = stmt.executeQuery("select numreservation, datereservation from reservation");
+            resultat = stmt.executeQuery("select numreservation from reservation");
             listeReservation = new ArrayList<>();
             
             while(resultat.next())
             {
-                reservation = new Reservation(resultat.getInt(1), resultat.getTimestamp(2));
+                reservation = new Reservation(resultat.getInt(1));
                 listeReservation.add(reservation);
             }
         }

@@ -12,4 +12,8 @@ public class Reservation
         this.numReservation = numReservation;
         this.dateReservation = dateReservation;
     }   
+
+    public Reservation(int aInt) {
+        this.numReservation=aInt;
+    }
 }

@@ -23,7 +23,7 @@ public class CourtDAO
         try
         {
             stmt = connexionBD.createStatement();
-            resultat = stmt.executeQuery("select numcourt from court");
+            resultat = stmt.executeQuery("select idcourt from court");
             listeCourt = new ArrayList<>();
             
             while(resultat.next())
