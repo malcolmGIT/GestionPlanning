@@ -16,14 +16,20 @@ import Planning.Match;
 import Planning.Ramasseur;
 import Planning.Reservation;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Fenetre extends javax.swing.JFrame
 {
     private static OracleDataSourceDAO ods;
     private static Connection c;
+    private static Statement stmt;
+    private static ResultSet res;
     private static ArbitreDAO arbitre;
     private static CourtDAO court;
     private static EquipeRamasseurDAO equipe;
@@ -111,7 +117,7 @@ public class Fenetre extends javax.swing.JFrame
         }
         
         actualiseListeJoueur();
-       actualiseListeArbitre();
+        actualiseListeArbitre();
     }
     
     private void actualiseListeJoueur()
@@ -732,13 +738,24 @@ public class Fenetre extends javax.swing.JFrame
             if(match.estBienPlace(match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchPlace), listeMatchPlace, comboCourt.getSelectedItem().toString()))
             {            
                 jLabel7.setText("                                           " + comboNumMatch.getSelectedItem().toString() + " placé ");
-                comboNumMatch.removeItem(comboNumMatch.getSelectedItem());            
+                comboNumMatch.removeItem(comboNumMatch.getSelectedItem());  
+                
+                
+                
+                
             }
             else
             {
                 jLabel7.setText("Erreur : Il faut un intervalle d'au moins une heure avec les autres match du court.");
                 match.retirerMatch(listeMatchDispo, listeMatchPlace, match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchPlace));
             }
+        }
+        int nj1 =joueur.chercherNumJoueur(comboJ1.getSelectedItem().toString(), listeJoueurDispo);
+        int nj2 =joueur.chercherNumJoueur(comboJ2.getSelectedItem().toString(), listeJoueurDispo);
+        try {
+            joueur.placerJoueur(nj1,nj2,match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchDispo).getNumMatch());
+        } catch (SQLException ex) {
+            System.out.println("erreur valider : " + ex);
         }
         actualiseListeJoueur();
         actualiseListeArbitre();

@@ -2,6 +2,7 @@ package DAO;
 
 import Planning.Joueur;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -77,10 +78,22 @@ public class JoueurDAO
        
     }
     
-    public void placerJoueur()
-    {
+    public int chercherNumJoueur(String j, List<Joueur> listeJoueur){
+        for(Joueur jo : listeJoueur)
+            if(j.equals(jo.toString()))
+                return jo.getNumJoueur();
+        return 0;
         
-    }
+        }
+    
+        public void placerJoueur(int njoueur1, int njoueur2, int numMatch) throws SQLException{
+            stmt=connexionBD.createStatement();
+            String req = "update match set numjoueur1 ="+ njoueur1+", numjoueur2 ="+ njoueur2+" where nummatch="+ numMatch; 
+            stmt.executeUpdate(req);
+            
+        }
+        
+    
 
     public List<Joueur> getListeJoueurDispo()
     {
