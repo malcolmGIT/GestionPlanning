@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 public class ReservationDAO
@@ -73,7 +75,7 @@ public class ReservationDAO
     }
     
     
-    public void ajouterReservation(/*String nomJoueur,*/ String heureDebut, String heureFin, String jour/*, int nbPersonnes*/, String typeCourt) throws SQLException
+    public void ajouterReservation(String nomJoueur, String heureDebut, String jour, int nbPersonnes, String typeCourt) throws SQLException
     {
         /*nomJoueur = "FERGAL MECHIN";
         heureDebut = "10h";
@@ -93,7 +95,7 @@ public class ReservationDAO
         
         //Récupérer l'id du créneau à partir de HeureDebut, heureFin et jour
         stmt = connexionBD.createStatement();
-        resultat = stmt.executeQuery("Select numcreneau from creneau where heuredebut='" + heureDebut + "' and heurefin='" + heureFin + "' and jour='" + jour + "'");
+        resultat = stmt.executeQuery("Select numcreneau from creneau where heuredebut='" + heureDebut + "' and jour='" + jour + "'");
         int numCreneau = 0;
         while(resultat.next())
         {
@@ -111,8 +113,78 @@ public class ReservationDAO
             numCourt = resultat.getInt(1);
         }
         resultat.close();
-        System.out.println("dqsd"+numCourt);
+
+        
+        stmt = connexionBD.createStatement();
+        resultat = stmt.executeQuery("insert into reservation values (" + numReservation + ", " + nbPersonnes + ", 'Responsable1', " + numCourt + ", '" + nomJoueur + "', " + numCreneau + ")");
+
     }
+    
+    public ArrayList<String> getHeureDebut()
+    {
+        ArrayList<String> heureDebut = new ArrayList<String>();
+        
+        
+        try {
+            stmt = connexionBD.createStatement();
+            resultat = stmt.executeQuery("select unique heuredebut from creneau");
+            while(resultat.next())
+            {
+                heureDebut.add(resultat.getString(1));
+            }
+            resultat.close();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return heureDebut;
+    }
+    
+     public ArrayList<String> getJours()
+    {
+        ArrayList<String> jours = new ArrayList<String>();
+        
+        
+        try {
+            stmt = connexionBD.createStatement();
+            resultat = stmt.executeQuery("select unique jour from creneau");
+            while(resultat.next())
+            {
+                jours.add(resultat.getString(1));
+            }
+            resultat.close();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return jours;
+    }
+     
+     
+    public ArrayList<String> getTypeCourts()
+    {
+        ArrayList<String> typeCourts = new ArrayList<String>();
+        
+        
+        try {
+            stmt = connexionBD.createStatement();
+            resultat = stmt.executeQuery("select typecourt from court");
+            while(resultat.next())
+            {
+                typeCourts.add(resultat.getString(1));
+            }
+            resultat.close();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return typeCourts;
+    }
+     
+     
     
     public String afficherHorraireReservation(Timestamp ts)
     {
