@@ -733,7 +733,7 @@ public class GestionPlanning extends javax.swing.JFrame
         panResponsable.setVisible(false);
         panConfirmationResponsable.setVisible(true); 
         panMatchDouble.setVisible(false);
-        if(match.placerUnMatch(listeMatchDispo, listeMatchPlace, match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchDispo), comboJour.getSelectedItem().toString(), comboMois.getSelectedItem().toString(), comboAnnee.getSelectedItem().toString(), comboHeure.getSelectedItem().toString(), comboMinute.getSelectedItem().toString()))
+        if(match.placerUnMatch(listeMatchDispo, listeMatchPlace, match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchDispo), comboJour.getSelectedItem().toString(), comboMois.getSelectedItem().toString(), comboAnnee.getSelectedItem().toString(), comboHeure.getSelectedItem().toString(), comboMinute.getSelectedItem().toString(),joueur.chercherNumJoueur(comboJ1.getSelectedItem().toString(), listeJoueurDispo)))
         {    
             if(match.estBienPlace(match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchPlace), listeMatchPlace, comboCourt.getSelectedItem().toString()))
             {            
@@ -750,13 +750,9 @@ public class GestionPlanning extends javax.swing.JFrame
                 match.retirerMatch(listeMatchDispo, listeMatchPlace, match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchPlace));
             }
         }
-        int nj1 =joueur.chercherNumJoueur(comboJ1.getSelectedItem().toString(), listeJoueurDispo);
-        int nj2 =joueur.chercherNumJoueur(comboJ2.getSelectedItem().toString(), listeJoueurDispo);
-        try {
-            joueur.placerJoueur(nj1,nj2,match.chercherMatch(comboNumMatch.getSelectedItem().toString(), listeMatchDispo).getNumMatch());
-        } catch (SQLException ex) {
-            System.out.println("erreur valider : " + ex);
-        }
+        Joueur nj1 =joueur.chercherNumJoueur(comboJ1.getSelectedItem().toString(), listeJoueurDispo);
+        Joueur nj2 =joueur.chercherNumJoueur(comboJ2.getSelectedItem().toString(), listeJoueurDispo);
+        
         actualiseListeJoueur();
         actualiseListeArbitre();
     }//GEN-LAST:event_butValiderActionPerformed

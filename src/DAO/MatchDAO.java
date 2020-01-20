@@ -1,5 +1,6 @@
 package DAO;
 
+import Classes.Joueur;
 import Classes.Match;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ public class MatchDAO
     private Match match;
     private Statement stmt;
     private Statement _stmt;
+    private Statement __stmt;
     private ResultSet resultat;
     
     public List<Match> getMatchsDispos()
@@ -76,21 +78,29 @@ public class MatchDAO
         return null;
     }
     
-    public boolean placerUnMatch(List<Match> listeMatchDispo, List<Match> listeMatchPlace, Match match, String jour, String mois, String annee, String heure, String minute)
+    public boolean placerUnMatch(List<Match> listeMatchDispo, List<Match> listeMatchPlace, Match match, String jour, String mois, String annee, String heure, String minute, Joueur j1, Joueur j2)
     {
         try
         {
             stmt = connexionBD.createStatement();
             _stmt = connexionBD.createStatement();
-            int l = stmt.executeUpdate("update match set datematch = '" + jour + "/" + mois + "/" + annee.substring(2) + " " + heure + ":" + minute + "'" + " where nummatch = " + Integer.toString(match.getNumMatch()));
-            l = stmt.executeUpdate("commit");
+            __stmt = connexionBD.createStatement();
+            int req = stmt.executeUpdate("update match set datematch = '" + jour + "/" + mois + "/" + annee.substring(2) + " " + heure + ":" + minute + "'" + " where nummatch = " + Integer.toString(match.getNumMatch()));
+            req = stmt.executeUpdate("commit");
             resultat = _stmt.executeQuery("select datematch from match where nummatch = " + match.getNumMatch());
             if(resultat.next())
             {
                 match.setDateMatch(resultat.getTimestamp(1));
             }
+            
             listeMatchDispo.remove(match);
             listeMatchPlace.add(match);
+            req = __stmt.executeUpdate("update match set numjoueur1 = " + j1.getNumJoueur() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numjoueur2 = " + j2.getNumJoueur() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("commit");
+            stmt.close();
+            _stmt.close();
+            __stmt.close();
             return true;
         }
         catch(SQLException e)

@@ -78,11 +78,12 @@ public class JoueurDAO
        
     }
     
-    public int chercherNumJoueur(String j, List<Joueur> listeJoueur){
+    public Joueur chercherNumJoueur(String j, List<Joueur> listeJoueur){
         for(Joueur jo : listeJoueur)
             if(j.equals(jo.toString()))
-                return jo.getNumJoueur();
-        return 0;
+                return jo;
+        return null;
+        
         
         }
     
