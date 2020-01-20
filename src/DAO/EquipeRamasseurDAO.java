@@ -1,7 +1,7 @@
 package DAO;
 
-import Planning.EquipeRamasseur;
-import Planning.Ramasseur;
+import Classes.EquipeRamasseur;
+import Classes.Ramasseur;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

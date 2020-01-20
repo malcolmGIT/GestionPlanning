@@ -1,6 +1,6 @@
 package DAO;
 
-import Planning.Tournoi;
+import Classes.Tournoi;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

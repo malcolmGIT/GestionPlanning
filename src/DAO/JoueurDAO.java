@@ -1,6 +1,6 @@
 package DAO;
 
-import Planning.Joueur;
+import Classes.Joueur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

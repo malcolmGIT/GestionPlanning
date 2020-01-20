@@ -1,6 +1,6 @@
 package DAO;
 
-import Planning.Court;
+import Classes.Court;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
