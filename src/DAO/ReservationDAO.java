@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 public class ReservationDAO
@@ -72,10 +74,123 @@ public class ReservationDAO
         return(jour + "/" + mois + "/" + annee);
     }
     
+    
+    public void ajouterReservation(String nomJoueur, String heureDebut, String jour, int nbPersonnes, String typeCourt) throws SQLException
+    {
+        /*nomJoueur = "FERGAL MECHIN";
+        heureDebut = "10h";
+        heureFin = "15h";
+        jour = "2020-05-15";
+        nbPersonnes = 3;*/
+        
+        //Récupérer le nombre de réservation pour trouver l'id
+        stmt = connexionBD.createStatement();
+        resultat = stmt.executeQuery("Select count(*) from Reservation");
+        int numReservation = 0;
+        while(resultat.next())
+        {
+            numReservation = resultat.getInt(1);
+        }
+        resultat.close();
+        
+        //Récupérer l'id du créneau à partir de HeureDebut, heureFin et jour
+        stmt = connexionBD.createStatement();
+        resultat = stmt.executeQuery("Select numcreneau from creneau where heuredebut='" + heureDebut + "' and jour='" + jour + "'");
+        int numCreneau = 0;
+        while(resultat.next())
+        {
+            numCreneau = resultat.getInt(1);
+        }
+        resultat.close();
+        
+        //Trouver l'id du court à partir de son type
+        
+        stmt = connexionBD.createStatement();
+        resultat = stmt.executeQuery("Select idCourt from court where typecourt='" + typeCourt + "'");
+        int numCourt = 0;
+        while(resultat.next())
+        {
+            numCourt = resultat.getInt(1);
+        }
+        resultat.close();
+
+        
+        stmt = connexionBD.createStatement();
+        resultat = stmt.executeQuery("insert into reservation values (" + numReservation + ", " + nbPersonnes + ", 'Responsable1', " + numCourt + ", '" + nomJoueur + "', " + numCreneau + ")");
+
+    }
+    
+    public ArrayList<String> getHeureDebut()
+    {
+        ArrayList<String> heureDebut = new ArrayList<String>();
+        
+        
+        try {
+            stmt = connexionBD.createStatement();
+            resultat = stmt.executeQuery("select unique heuredebut from creneau");
+            while(resultat.next())
+            {
+                heureDebut.add(resultat.getString(1));
+            }
+            resultat.close();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return heureDebut;
+    }
+    
+     public ArrayList<String> getJours()
+    {
+        ArrayList<String> jours = new ArrayList<String>();
+        
+        
+        try {
+            stmt = connexionBD.createStatement();
+            resultat = stmt.executeQuery("select unique jour from creneau");
+            while(resultat.next())
+            {
+                jours.add(resultat.getString(1));
+            }
+            resultat.close();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return jours;
+    }
+     
+     
+    public ArrayList<String> getTypeCourts()
+    {
+        ArrayList<String> typeCourts = new ArrayList<String>();
+        
+        
+        try {
+            stmt = connexionBD.createStatement();
+            resultat = stmt.executeQuery("select typecourt from court");
+            while(resultat.next())
+            {
+                typeCourts.add(resultat.getString(1));
+            }
+            resultat.close();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return typeCourts;
+    }
+     
+     
+    
     public String afficherHorraireReservation(Timestamp ts)
     {
         return afficherDateReservation(ts) + " " + afficherHeureReservation(ts);
     }
+    
     
     public void setDataSource(DataSource ds)
     {
