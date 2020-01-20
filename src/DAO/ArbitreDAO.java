@@ -1,6 +1,7 @@
 package DAO;
 
 import Classes.Arbitre;
+import Classes.Match;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,6 +52,38 @@ public class ArbitreDAO
         return listeArbitre;
     }
     
+    public Arbitre chercherArbitre(String arbitreParam, List<Arbitre> listeArbitre)
+    {
+        for(Arbitre a:listeArbitre)
+        {
+            if(arbitreParam.equals(a.toString()))
+            {
+                return a;
+            }
+        }
+        return null;
+    }
+    public void placerArbitreLigne(Match match, Arbitre arbitreChaise, Arbitre arbitreLigne1, Arbitre arbitreLigne2, Arbitre arbitreLigne3, Arbitre arbitreLigne4, Arbitre arbitreLigne5, Arbitre arbitreLigne6, Arbitre arbitreLigne7)
+    { 
+        try
+        {
+            stmt = connexionBD.createStatement();
+            int i = stmt.executeUpdate("update match set numarbitrechaise = " + arbitreChaise.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            i = stmt.executeUpdate("update match set numarbitreligne1 = " + arbitreLigne1.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            i = stmt.executeUpdate("update match set numarbitreligne2 = " + arbitreLigne2.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            i = stmt.executeUpdate("update match set numarbitreligne3 = " + arbitreLigne3.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            i = stmt.executeUpdate("update match set numarbitreligne4 = " + arbitreLigne4.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            i = stmt.executeUpdate("update match set numarbitreligne5 = " + arbitreLigne5.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            i = stmt.executeUpdate("update match set numarbitreligne6 = " + arbitreLigne6.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            i = stmt.executeUpdate("update match set numarbitreligne7 = " + arbitreLigne7.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            i = stmt.executeUpdate("commit");
+            stmt.close();
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Erreur ! : " + e);
+        } 
+    }
     public void getArbitresLigne(String jour, String mois, String annee, String heure, String minute)
     {
         try

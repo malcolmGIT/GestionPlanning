@@ -1,5 +1,6 @@
 package DAO;
 
+import Classes.Arbitre;
 import Classes.Joueur;
 import Classes.Match;
 import java.sql.Connection;
@@ -78,7 +79,7 @@ public class MatchDAO
         return null;
     }
     
-    public boolean placerUnMatch(List<Match> listeMatchDispo, List<Match> listeMatchPlace, Match match, String jour, String mois, String annee, String heure, String minute, Joueur j1, Joueur j2)
+    public boolean placerUnMatch(List<Match> listeMatchDispo, List<Match> listeMatchPlace, Match match, String jour, String mois, String annee, String heure, String minute, Joueur j1, Joueur j2, Arbitre aC,Arbitre a1, Arbitre a2, Arbitre a3, Arbitre a4, Arbitre a5, Arbitre a6, Arbitre a7)
     {
         try
         {
@@ -97,6 +98,14 @@ public class MatchDAO
             listeMatchPlace.add(match);
             req = __stmt.executeUpdate("update match set numjoueur1 = " + j1.getNumJoueur() + " where nummatch = " + match.getNumMatch());
             req = __stmt.executeUpdate("update match set numjoueur2 = " + j2.getNumJoueur() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitrechaise = " + aC.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre1 = " + a1.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre2 = " + a2.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre3 = " + a3.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre4 = " + a4.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre5 = " + a5.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre6 = " + a6.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre7 = " + a7.getNumArbitre() + " where nummatch = " + match.getNumMatch());
             req = __stmt.executeUpdate("commit");
             stmt.close();
             _stmt.close();
@@ -111,6 +120,49 @@ public class MatchDAO
         
     }
     
+    
+    public boolean placerUnMatchDouble(List<Match> listeMatchDispo, List<Match> listeMatchPlace, Match match, String jour, String mois, String annee, String heure, String minute, Joueur j1, Joueur j2, Joueur j3, Joueur j4,Arbitre aC,Arbitre a1, Arbitre a2, Arbitre a3, Arbitre a4, Arbitre a5, Arbitre a6, Arbitre a7)
+    {
+        try
+        {
+            stmt = connexionBD.createStatement();
+            _stmt = connexionBD.createStatement();
+            __stmt = connexionBD.createStatement();
+            int req = stmt.executeUpdate("update match set datematch = '" + jour + "/" + mois + "/" + annee.substring(2) + " " + heure + ":" + minute + "'" + " where nummatch = " + Integer.toString(match.getNumMatch()));
+            req = stmt.executeUpdate("commit");
+            resultat = _stmt.executeQuery("select datematch from match where nummatch = " + match.getNumMatch());
+            if(resultat.next())
+            {
+                match.setDateMatch(resultat.getTimestamp(1));
+            }
+            
+            listeMatchDispo.remove(match);
+            listeMatchPlace.add(match);
+            req = __stmt.executeUpdate("update match set numjoueur1 = " + j1.getNumJoueur() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numjoueur2 = " + j2.getNumJoueur() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numjoueur3 = " + j3.getNumJoueur() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numjoueur4 = " + j4.getNumJoueur() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitrechaise = " + aC.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre1 = " + a1.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre2 = " + a2.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre3 = " + a3.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre4 = " + a4.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre5 = " + a5.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre6 = " + a6.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("update match set numarbitre7 = " + a7.getNumArbitre() + " where nummatch = " + match.getNumMatch());
+            req = __stmt.executeUpdate("commit");
+            stmt.close();
+            _stmt.close();
+            __stmt.close();
+            return true;
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Erreur placer match ! : " + e);
+            return false;
+        }
+        
+    }
     public boolean retirerMatch(List<Match> listeMatchDispo, List<Match> listeMatchPlace, Match match)
     {
         try
